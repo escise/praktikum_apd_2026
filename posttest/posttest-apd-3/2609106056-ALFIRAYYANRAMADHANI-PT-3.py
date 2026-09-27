@@ -1,7 +1,8 @@
 nama = "alfi"
 nim = 56
 
-login_user = input("masukkan username: ").lower().strip()
+# Case sensitif!!!! 
+login_user = input("masukkan username: ")
 login_password = int(input("masukkan password: "))
 
 if login_user == nama:
