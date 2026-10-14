@@ -156,5 +156,3 @@ for i, j in menu.items():
     for kategori in j:
         print(kategori)
     print("")
-
-    
