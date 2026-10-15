@@ -148,6 +148,7 @@ while True:
                             
                             if dua_lagi == "y":
                                 os.system("cls")
+                                # i hate my life
                             else:
                                 os.system("cls")
                                 print("masukkan di terima.")
@@ -209,6 +210,7 @@ while True:
                                         
                                 list_br_elektronik[idx] = [nm_br_upd, mrk_br_upd, hrg_br_upd, st_br_upd]
                                 os.system("cls")
+                                # aku pengen bundir-
                                 print("Data barang berhasil diupdate!\n")
                                 
                                 lagi = input("Apakah ingin mengupdate barang lain? (y/n): ").strip().lower()
@@ -250,7 +252,7 @@ while True:
                         if pilih_idx.lower() == 'x':
                             os.system("cls")
                             break
-                            
+                        # alfi. kamu kebanyakan nunda terus? why are you keep doing this?
                         if pilih_idx.isdigit():
                             pilih_idx = int(pilih_idx)
                             if 1 <= pilih_idx <= len(list_br_elektronik):
@@ -272,6 +274,7 @@ while True:
             else:
                 os.system("cls")
                 print("Anda bukan seorang admin")
+            # aku telah merusak janji ku sendiri.
         elif opsi_in_menu == 5:
             os.system("cls")
             print("𝚃𝚎𝚛𝚒𝚖𝚊 𝚔𝚊𝚜𝚒𝚑 𝚝𝚎𝚕𝚊𝚑 𝚖𝚎𝚗𝚐𝚐𝚞𝚗𝚊𝚔𝚊𝚗 𝚂𝚒𝚜𝚝𝚎𝚖 𝙿𝚎𝚗𝚍𝚊𝚝𝚊𝚊𝚗 𝚂𝚝𝚘𝚔 𝙱𝚊𝚛𝚊𝚗𝚐 𝙴𝚕𝚎𝚔𝚝𝚛𝚘𝚗𝚒𝚔!")
