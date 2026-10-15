@@ -49,17 +49,17 @@ while reg:
     rgs_pass = input("masukkan password registrasi baru anda: ")
 
     if rgs_pass.isdigit():
-        username_exists = False
+        user_ada = False
         if rgs_user == user_pw_admin[0]:
-            username_exists = True
+            user_ada = True
         else:
-            for acc in user_pw:
-                if acc[0] == rgs_user:
-                    username_exists = True
+            for i in user_pw:
+                if i[0] == rgs_user:
+                    user_ada = True
                     break
         
-        if username_exists:
-            print("Username tidak boleh sama atau sudah terdaftar!")
+        if user_ada:
+            print("Username sudah terdaftar!")
         else:
             user_pw = user_pw + ([rgs_user, rgs_pass],)
             os.system("cls")
