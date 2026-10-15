@@ -46,35 +46,31 @@ while True:
 
 while reg:
     rgs_user = input("masukkan user registrasi baru anda: ").strip().lower()
-    rgs_pass = input("masukkan password registrasi baru anda: ")
+    rgs_pw = input("masukkan password registrasi baru anda: ")
 
-    if rgs_pass.isdigit():
-        user_ada = False
-        if rgs_user == user_pw_admin[0]:
-            user_ada = True
-        else:
-            for i in user_pw:
-                if i[0] == rgs_user:
-                    user_ada = True
-                    break
-        
-        if user_ada:
-            print("Username sudah terdaftar!")
-        else:
-            user_pw = user_pw + ([rgs_user, rgs_pass],)
-            os.system("cls")
-
-            rgs_cb = input("Apakah anda ingin login atau registrasi akun baru lagi? (ya/tidak): ").strip().lower()
-
-            if rgs_cb in ["y", "ya", "iya", "yes", "1"]:
-                print("silahkan isi akun baru lagi.")
-            elif rgs_cb in ["n", "tidak", "tak", "no", "t", "0"]:
-                print("silahkan login.")
-                log = True
-                break
+    user_ada = False
+    if rgs_user == user_pw_admin[0]:
+        user_ada = True
     else:
+        for i in user_pw:
+            if i[0] == rgs_user:
+                user_ada = True
+                break
+        
+    if user_ada:
+        print("Username sudah terdaftar!")
+    else:
+        user_pw = user_pw + ([rgs_user, rgs_pw],)
         os.system("cls")
-        print("password yang akan digunakan harus berupa angka.")
+
+        rgs_cb = input("Apakah anda ingin login atau registrasi akun baru lagi? (ya/tidak): ").strip().lower()
+
+        if rgs_cb in ["y", "ya", "iya", "yes", "1"]:
+            print("silahkan isi akun baru lagi.")
+        elif rgs_cb in ["n", "tidak", "tak", "no", "t", "0"]:
+            print("silahkan login.")
+            log = True
+            break
 
 while percobaan < 3 and log:
     log_user = input("Masukkan username anda: ").strip().lower()
@@ -91,6 +87,7 @@ while percobaan < 3 and log:
         print("user atau password invalid")
         percobaan += 1
     if percobaan == 3:
+        os.system("cls")
         print("anda gagal login sebanyak tiga kali")
 
 # Create, Read, Update, dan Delete sesuai dengan privilege-nya masing-masing
