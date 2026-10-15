@@ -89,6 +89,7 @@ while percobaan < 3 and log:
     if percobaan == 3:
         os.system("cls")
         print("anda gagal login sebanyak tiga kali")
+        exit()
 
 # Create, Read, Update, dan Delete sesuai dengan privilege-nya masing-masing
 while True:
