@@ -49,7 +49,6 @@ while reg:
     rgs_pass = input("masukkan password registrasi baru anda: ")
 
     if rgs_pass.isdigit():
-        # Check if username already exists in the nested structure or matches admin
         username_exists = False
         if rgs_user == user_pw_admin[0]:
             username_exists = True
