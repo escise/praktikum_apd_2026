@@ -46,13 +46,13 @@ while True:
 
 while reg:
     rgs_user = input("masukkan user registrasi baru anda: ").strip().lower()
-    rgs_pass = input("masukkan password registrasi baru anda: ")
+    rgs_pw = input("masukkan password registrasi baru anda: ")
 
-    if rgs_pass.isdigit():
+    if rgs_pw.isdigit():
         if rgs_user in user_pw or rgs_user == user_pw_admin[0]:
             print("Username tidak boleh sama atau sudah terdaftar!")
         else:
-            user_pw[rgs_user] = rgs_pass
+            user_pw[rgs_user] = rgs_pw
             os.system("cls")
 
             rgs_cb = input("Apakah anda ingin login atau registrasi akun baru lagi? (ya/tidak): ").strip().lower()
@@ -61,6 +61,11 @@ while reg:
                 print("silahkan isi akun baru lagi.")
             elif rgs_cb in ["n", "tidak", "tak", "no", "t", "0"]:
                 print("silahkan login.")
+                log = True
+                break
+            else:
+                os.system("cls")
+                print("kesalahan input, sistem akan lanjut ke proses selanjutnya.")
                 log = True
                 break
     else:
@@ -134,7 +139,7 @@ while True:
 
                         if not (st_br_baru.isdigit() and nm_br_baru and mrk_br_baru and hrg_br_baru.isdigit()):
                             os.system("cls")
-                            print("Salah satu atau lebih masukkan tidak valid")
+                            print("Salah satu atau lebih Input tidak valid")
                         else:
                             barang_baru = {
                                 "nama": nm_br_baru,
@@ -166,10 +171,9 @@ while True:
                 if konfirmasi == "y":
                     while True:
                         os.system("cls")
-                        print("=== List Barang Elektronik untuk Diupdate ===")
+                        print("List Barang Elektronik untuk Diupdate")
                         if not list_br_elektronik:
                             print("List barang elektronik kosong.")
-                            input("Tekan Enter untuk kembali...")
                             break
                             
                         for i, item in enumerate(list_br_elektronik, start=1):
