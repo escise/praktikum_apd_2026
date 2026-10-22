@@ -88,6 +88,7 @@ while percobaan < 3 and log:
         percobaan += 1
     if percobaan == 3:
         print("anda gagal login sebanyak tiga kali")
+        exit()
 
 # Create, Read, Update, dan Delete sesuai dengan privilege-nya masing-masing
 while True:
@@ -245,7 +246,6 @@ while True:
                         print("=== List Barang Elektronik untuk Dihapus ===")
                         if not list_br_elektronik:
                             print("List barang elektronik kosong.")
-                            input("Tekan Enter untuk kembali...")
                             break
                             
                         for i, item in enumerate(list_br_elektronik, start=1):
