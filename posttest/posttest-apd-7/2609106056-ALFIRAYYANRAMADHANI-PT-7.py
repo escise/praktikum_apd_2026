@@ -197,7 +197,6 @@ while True:
             print("Anda bukan seorang admin")
         input("\nTekan Enter untuk kembali: ")
         os.system("cls")
-
     elif opsi == 3:
         os.system("cls")
         if admin_privilege:
@@ -242,7 +241,6 @@ while True:
         input("\nTekan Enter untuk kembali: ")
         os.system("cls")
         break
-
     elif opsi == 4:
         os.system("cls")
         if admin_privilege:
@@ -279,14 +277,12 @@ while True:
         input("\nTekan Enter untuk kembali: ")
         os.system("cls")
         break
-
     elif opsi == 5:
         os.system("cls")
         total_stok2 = total_stok(list_br_elektronik)
         print(f"Total seluruh stok barang elektronik di sistem: {total_stok2} unit")
         input("\nTekan Enter untuk kembali: ")
         os.system("cls")
-
     elif opsi == 6:
         os.system("cls")
         print("𝚃𝚎𝚛𝚒𝚖𝚊 𝚔𝚊𝚜𝚒𝚑 𝚝𝚎𝚕𝚊𝚑 𝚖𝚎𝚗𝚐𝚐𝚞𝚗𝚊𝚔𝚊𝚗 𝚂𝚒𝚜𝚝𝚎𝚖 𝙿𝚎𝚗𝚍𝚊𝚝𝚊𝚊𝚗 𝚂𝚝𝚘𝚔 𝙱𝚊𝚛𝚊𝚗𝚐 𝙴𝚕𝚎𝚔𝚝𝚛𝚘𝚗𝚒𝚔!")
