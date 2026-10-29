@@ -35,6 +35,25 @@ def menu_utama():
 def admin():
     return user_pw_admin
 
+def reg(database, admin_data):
+    reg_user = input("Masukkan username baru: ").strip().lower()
+    reg_pw = input("Masukkan password baru (harus angka): ")
+
+    try:
+        if not reg_pw.isdigit():
+            raise ValueError("Password wajib berupa angka.")
+            
+        admin_data = admin()
+        if reg_user in database or reg_user == admin_data[0]:
+            print("Username sudah terdaftar.")
+        else:
+            database[reg_user] = reg_pw
+            print("Registrasi berhasil! Silahkan  login.")
+            os.system("cls")
+            print(menu_awal())
+    except ValueError:
+        print("Input tidak valid.")
+
 def login(username, password, database):
     if username in database and database[username] == password:
         return True
@@ -107,23 +126,7 @@ while not log and percobaan_login < 3:
         continue
 
     if pilih == 1:
-        reg_user = input("Masukkan username baru: ").strip().lower()
-        reg_pw = input("Masukkan password baru (harus angka): ")
-        try:
-            if not reg_pw.isdigit():
-                raise ValueError("Password wajib berupa angka.")
-            
-            admin_data = admin()
-            if reg_user in user_pw or reg_user == admin_data[0]:
-                print("Username sudah terdaftar.")
-            else:
-                user_pw[reg_user] = reg_pw
-                print("Registrasi berhasil! Silahkan  login.")
-                os.system("cls")
-                print(menu_awal())
-        except ValueError:
-            print("Input tidak valid.")
-
+        reg(user_pw, admin())
     elif pilih == 2:
         log_user = input("Username: ").strip().lower()
         log_pw = input("Password: ")
