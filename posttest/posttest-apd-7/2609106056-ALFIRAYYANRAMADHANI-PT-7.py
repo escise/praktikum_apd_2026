@@ -24,7 +24,7 @@ def menu_utama():
         2. Tambah Stok Barang Elektronik Baru (Admin)
         3. Update Stok Barang Elektronik (Admin)
         4. Hapus Stok Barang Elektronik (Admin)
-        5. Total stok keseluruhan
+        5. Total Stok Keseluruhan
         6. Keluar dari Program
         
         ===============================================
@@ -50,11 +50,28 @@ def reg(database, admin_data):
             database[reg_user] = reg_pw
             print("Registrasi berhasil! Silahkan  login.")
             os.system("cls")
-            print(menu_awal())
+            menu_awal()
     except ValueError:
         print("Input tidak valid.")
 
-def login(username, password, database):
+def login(database, admin_data, percobaan):
+    log_user = input("Username: ").strip().lower()
+    log_pw = input("Password: ")
+    
+    if log_user == admin_data[0] and log_pw == admin_data[1]:
+        print("Login berhasil sebagai admin!")
+        return True, True, percobaan
+    else:
+
+        if validasi_login(log_user, log_pw, database):
+            print("Login berhasil sebagai Pengguna!")
+            return True, False, percobaan
+        else:
+            print("Username atau password salah!")
+            percobaan += 1
+            return False, False, percobaan
+
+def validasi_login(username, password, database):
     if username in database and database[username] == password:
         return True
     return False
@@ -118,6 +135,7 @@ log = False
 admin_privilege = False
 percobaan_login = 0
 
+# login dan registrasi
 while not log and percobaan_login < 3:
     try:
         pilih = int(input("Pilih opsi (1-3): "))
@@ -128,25 +146,10 @@ while not log and percobaan_login < 3:
     if pilih == 1:
         reg(user_pw, admin())
     elif pilih == 2:
-        log_user = input("Username: ").strip().lower()
-        log_pw = input("Password: ")
-        
-        admin_data = admin()
-        if log_user == admin_data[0] and log_pw == admin_data[1]:
-            print("Login berhasil sebagai admin.")
-            admin_privilege = True
-            log = True
-        else:
-            if login(log_user, log_pw, user_pw):
-                print("Login berhasil sebagai Pengguna.")
-                admin_privilege = True
-                log = True
-            else:
-                print("Username atau password salah!")
-                percobaan_login += 1
-                if percobaan_login == 3:
-                    print("Anda telah gagal login 3 kali.")
-                    exit()
+        log, admin_privilege, percobaan_login = login(user_pw, admin(), percobaan_login)
+        if not log and percobaan_login == 3:
+            print("Anda telah gagal login 3 kali.")
+            exit()
     elif pilih == 3:
         os.system("cls")
         print("𝚃𝚎𝚛𝚒𝚖𝚊 𝚔𝚊𝚜𝚒𝚑 𝚝𝚎𝚕𝚊𝚑 𝚖𝚎𝚗𝚐𝚐𝚞𝚗𝚊𝚔𝚊𝚗 𝚂𝚒𝚜𝚝𝚎𝚖 𝙿𝚎𝚗𝚍𝚊𝚝𝚊𝚊𝚗 𝚂𝚝𝚘𝚔 𝙱𝚊𝚛𝚊𝚗𝚐 𝙴𝚕𝚎𝚔𝚝𝚛𝚘𝚗𝚒𝚔!")
@@ -154,6 +157,7 @@ while not log and percobaan_login < 3:
 
 os.system("cls")
 
+# menu utama
 while True:
     opsi = menu_utama()
 
