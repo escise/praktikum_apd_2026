@@ -62,7 +62,6 @@ def login(database, admin_data, percobaan):
         print("Login berhasil sebagai admin!")
         return True, True, percobaan
     else:
-
         if validasi_login(log_user, log_pw, database):
             print("Login berhasil sebagai Pengguna!")
             return True, False, percobaan
@@ -90,14 +89,13 @@ def create(daftar_br, nama, brand, harga, stok):
     daftar_br.append(item_baru)
     return daftar_br
 
-def read(daftar_barang):
-    print('''\n=== DAFTAR STOK BARANG ELEKTRONIK ===''')
-    if not daftar_barang:
+def read(daftar_br):
+    print('''\nDAFTAR STOK BARANG ELEKTRONIK''')
+    if not daftar_br:
         print("Stok barang elektronik tidak ada")
         return
-    for i, item in enumerate(daftar_barang, start=1):
+    for i, item in enumerate(daftar_br, start=1):
         print(f"{i}. Nama: {item['nama']} | Brand: {item['brand']} | Harga: {item['harga']} | Stok: {item['stok']}")
-    print()
 
 def update(daftar_br, i, nama_b, brand_b, harga_b, stok_b):
     item_l = daftar_br[i]
@@ -194,7 +192,7 @@ while True:
                 except ValueError as r:
                     print(f"Gagal menambahkan barang: {r}")
             else:       
-                    os.system("cls")
+                os.system("cls")
         else:
             print("Anda bukan seorang admin")
         input("\nTekan Enter untuk kembali: ")
@@ -203,60 +201,84 @@ while True:
     elif opsi == 3:
         os.system("cls")
         if admin_privilege:
-            print()
-            read(list_br_elektronik)
-            if list_br_elektronik:
-                pilih_idx = input("\nPilih nomor barang yang ingin diupdate/ubah: ").strip()
-                try:
-                    if not pilih_idx.isdigit():
-                        raise ValueError("Input harus berupa angka.")
-                    pilih_idx = int(pilih_idx)
-                    
-                    if 1 <= pilih_idx <= len(list_br_elektronik):
-                        idx = pilih_idx - 1
-                        curr = list_br_elektronik[idx]
-                        print(f"\n[Mengupdate: {curr['nama']}] Kosongkan jika tidak ingin mengubah.")
-                        
-                        nm = input(f"Nama Baru [{curr['nama']}]: ").strip()
-                        brd = input(f"Brand Baru [{curr['brand']}]: ").strip()
-                        hrg = input(f"Harga Baru [{curr['harga']}]: ").strip()
-                        stk = input(f"Stok Baru [{curr['stok']}]: ").strip()
-                        
-                        list_br_elektronik = update(list_br_elektronik, idx, nm, brd, hrg, stk)
-                        print("Data barang elektronik berhasil di update/ubah!")
-                    else:
-                        print("Nomor barang tidak ada atau tidak valid.")
-                except ValueError:
-                    print("Input harus berupa angka.")
+            konfirmasi = input("Apakah Anda ingin mengubah data Barang Elektronik? (y/n): ").lower().strip()
+            
+            if konfirmasi == "y":
+                while True:
+                    print()
+                    read(list_br_elektronik)
+                    if list_br_elektronik:
+                        pilih_idx = input("\nPilih nomor barang yang ingin diupdate/ubah: ").strip()
+                        try:
+                            if not pilih_idx.isdigit():
+                                raise ValueError("Input harus berupa angka.")
+                            pilih_idx = int(pilih_idx)
+                            
+                            if 1 <= pilih_idx <= len(list_br_elektronik):
+                                idx = pilih_idx - 1
+                                curr = list_br_elektronik[idx]
+                                print(f"\n[Mengupdate: {curr['nama']}] Kosongkan jika tidak ingin mengubah.")
+                                
+                                nm = input(f"Nama Baru [{curr['nama']}]: ").strip()
+                                brd = input(f"Brand Baru [{curr['brand']}]: ").strip()
+                                hrg = input(f"Harga Baru [{curr['harga']}]: ").strip()
+                                stk = input(f"Stok Baru [{curr['stok']}]: ").strip()
+                                
+                                list_br_elektronik = update(list_br_elektronik, idx, nm, brd, hrg, stk)
+                                print("Data barang elektronik berhasil di update/ubah!")
+
+                                lagi = input("Apakah ingin menghapus barang lain? (y/n): ").strip().lower()
+                                if lagi != "y":
+                                    os.system("cls")
+                                    break
+                            else:
+                                print("Nomor barang tidak ada atau tidak valid.")
+                        except ValueError:
+                            print("Input harus berupa angka.")
+            else:
+                os.system("cls")
         else:
             print("Anda bukan seorang admin")
         input("\nTekan Enter untuk kembali: ")
         os.system("cls")
+        break
 
     elif opsi == 4:
         os.system("cls")
         if admin_privilege:
-            print("")
-            read(list_br_elektronik)
-            if list_br_elektronik:
-                pilih_idx = input("\nPilih nomor barang yang ingin dihapus: ").strip()
-                try:
-                    if not pilih_idx.isdigit():
-                        raise ValueError("Nomor pilihan harus berupa angka.")
-                    pilih_idx = int(pilih_idx)
-                    
-                    if 1 <= pilih_idx <= len(list_br_elektronik):
-                        idx = pilih_idx - 1
-                        dihapus = deletes(list_br_elektronik, idx)
-                        print(f"Barang '{dihapus['nama']}' berhasil dihapus dari sistem!")
-                    else:
-                        print("Nomor barang tidak valid.")
-                except ValueError:
-                    print("Input harus berupa angka.")
+            konfirmasi = input("Apakah Anda ingin menghapus data Barang Elektronik? (y/n): ").lower().strip()
+            
+            if konfirmasi == "y":
+                while True:
+                    print()
+                    read(list_br_elektronik)
+                    if list_br_elektronik:
+                        pilih_idx = input("\nPilih nomor barang yang ingin dihapus: ").strip()
+                        try:
+                            if not pilih_idx.isdigit():
+                                raise ValueError("Nomor pilihan harus berupa angka.")
+                            pilih_idx = int(pilih_idx)
+                            
+                            if 1 <= pilih_idx <= len(list_br_elektronik):
+                                idx = pilih_idx - 1
+                                dihapus = deletes(list_br_elektronik, idx)
+                                print(f"Barang '{dihapus['nama']}' berhasil dihapus dari sistem!")
+
+                                lagi = input("Apakah ingin menghapus barang lain? (y/n): ").strip().lower()
+                                if lagi != "y":
+                                    os.system("cls")
+                                    break 
+                            else:
+                                print("Nomor barang tidak valid.")
+                        except ValueError:
+                            print("Input harus berupa angka.")
+            else:
+                os.system("cls")
         else:
             print("Anda bukan seorang admin.")
         input("\nTekan Enter untuk kembali: ")
         os.system("cls")
+        break
 
     elif opsi == 5:
         os.system("cls")
