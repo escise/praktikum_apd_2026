@@ -105,24 +105,27 @@ while True:
     elif opsi == "2. Tambah Stok Barang Elektronik Baru (Admin)":
         os.system("cls")
         if admin_privilege:
-            konfirmasi = input("Apakah Anda ingin menambahkan Barang Elektronik Baru? (y/n): ").lower().strip()
-            
-            if konfirmasi == "y":
-                nm = input("Nama barang: ")
-                brd = input("Brand barang: ")
-                hrg = input("Harga (angka): ")
-                stk = input("Stok (angka): ")
+            try:
+                konfirmasi = input("Apakah Anda ingin menambahkan Barang Elektronik Baru? (y/n): ").lower().strip()
                 
-                try:
-                    if not (stk.isdigit() and hrg.isdigit()):
-                        raise ValueError("Harga dan Stok wajib berupa angka!")
+                if konfirmasi == "y":
+                    nm = input("Nama barang: ")
+                    brd = input("Brand barang: ")
+                    hrg = input("Harga (angka): ")
+                    stk = input("Stok (angka): ")
                     
-                    list_br_elektronik = create(list_br_elektronik, nm, brd, hrg, stk)
-                    print("Barang baru berhasil ditambahkan")
-                except ValueError as r:
-                    print(f"Gagal menambahkan barang: {r}")
-            else:       
-                os.system("cls")
+                    try:
+                        if not (stk.isdigit() and hrg.isdigit()):
+                            raise ValueError("Harga dan Stok wajib berupa angka!")
+                        
+                        list_br_elektronik = create(list_br_elektronik, nm, brd, hrg, stk)
+                        print("Barang baru berhasil ditambahkan")
+                    except ValueError as r:
+                        print(f"Gagal menambahkan barang: {r}")
+                else:       
+                    os.system("cls")
+            except ValueError:
+                print("Input tidak di kenali")
         else:
             print("Anda bukan seorang admin")
         input("\nTekan Enter untuk kembali: ")
